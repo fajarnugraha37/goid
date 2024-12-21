@@ -2,7 +2,11 @@ package uuid
 
 import "encoding/binary"
 
-func NewV1() (UUID, error) {
+func NewV1() UUID {
+	return Must(newV1())
+}
+
+func newV1() (UUID, error) {
 	var uuid UUID
 	now, seq, err := GetTime()
 	if err != nil {

@@ -1,8 +1,12 @@
 package uuid
 
 // NewV5 returns UUID based on SHA-1 hash of namespace UUID and name.
-func NewV5(ns UUID, name string) (UUID, error) {
-	uuid, err := NewV1()
+func NewV5(name string) UUID {
+	return Must(newV5(name))
+}
+
+func newV5(name string) (UUID, error) {
+	uuid, err := newV1()
 	if err != nil {
 		return Nil, nil
 	}

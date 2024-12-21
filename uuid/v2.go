@@ -1,7 +1,11 @@
 package uuid
 
 // NewV2 returns DCE Security UUID based on POSIX UID/GID.
-func NewV2(domain Domain, id uint32) (UUID, error) {
+func NewV2(domain Domain, id uint32) UUID {
+	return Must(newV2(domain, id))
+}
+
+func newV2(domain Domain, id uint32) (UUID, error) {
 	uuid, err := NewDCESecurity(domain, id)
 	if err != nil {
 		return Nil, err

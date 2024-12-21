@@ -16,13 +16,15 @@ import (
 // NewV7 returns a Version 7 UUID based on the current time(Unix Epoch).
 // Uses the randomness pool if it was enabled with EnableRandPool.
 // On error, NewV7 returns Nil and an error
-func NewV7() (UUID, error) {
-	uuid, err := NewV4Random()
-	if err != nil {
-		return uuid, err
-	}
-	makeV7(uuid[:])
-	return uuid, nil
+func NewV7() UUID {
+	return Must(func() (UUID, error) {
+		uuid, err := NewV4Random()
+		if err != nil {
+			return uuid, err
+		}
+		makeV7(uuid[:])
+		return uuid, nil
+	}())
 }
 
 // NewV7FromReader returns a Version 7 UUID based on the current time(Unix Epoch).

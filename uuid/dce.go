@@ -30,7 +30,7 @@ var (
 //
 // For a given domain/id pair the same token may be returned for up to 7 minutes and 10 seconds.
 func NewDCESecurity(domain Domain, id uint32) (UUID, error) {
-	uuid, err := NewV1()
+	uuid, err := newV1()
 	if err == nil {
 		uuid[6] = (uuid[6] & 0x0f) | 0x20 // Version 2
 		uuid[9] = byte(domain)
