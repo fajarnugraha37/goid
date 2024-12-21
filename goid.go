@@ -34,6 +34,6 @@ func UUIDv6() uuid.UUID {
 	return uuid.NewV6()
 }
 
-func UUIDv7(name string) uuid.UUID {
+func UUIDv7() uuid.UUID {
 	return uuid.NewV7()
 }
